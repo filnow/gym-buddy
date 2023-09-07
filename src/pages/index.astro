@@ -1,6 +1,7 @@
 ---
 // Component Imports
 import Counter from '../components/Counter';
+import ExerciseCard from '../components/ExerciseCard.astro';
 const someProps = {
 	count: 0,
 };
@@ -26,11 +27,16 @@ const someProps = {
 			}
 		</style>
 	</head>
-	<body>
-		<main>
-			<Counter {...someProps} client:visible>
-				<h1>Hello, React!</h1>
-			</Counter>
-		</main>
+	<body class="flex flex-wrap mt-6 gap-4">
+		<ExerciseCard
+			href="https://docs.astro.build/"
+			title="Podiąganie"
+			body="Podciąganie na drązku"
+		/>
+		<ExerciseCard
+			href="https://docs.astro.build/"
+			title="Pompki"
+			body="Pompki na poręczach"
+		/>
 	</body>
 </html>
