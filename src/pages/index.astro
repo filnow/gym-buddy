@@ -1,14 +1,9 @@
 ---
-// Component Imports
-import Counter from '../components/Counter';
 import ExerciseCard from '../components/ExerciseCard.astro';
-const someProps = {
-	count: 0,
-};
+import { exerciseData } from '../lib/Exercises';
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
 ---
+
 
 <html lang="en">
 	<head>
@@ -16,27 +11,10 @@ const someProps = {
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<style>
-			html,
-			body {
-				font-family: system-ui;
-				margin: 0;
-			}
-			body {
-				padding: 2rem;
-			}
-		</style>
 	</head>
-	<body class="flex flex-wrap mt-6 gap-4">
-		<ExerciseCard
-			href="https://docs.astro.build/"
-			title="Podiąganie"
-			body="Podciąganie na drązku"
-		/>
-		<ExerciseCard
-			href="https://docs.astro.build/"
-			title="Pompki"
-			body="Pompki na poręczach"
-		/>
+	<body class="ml-6">
+		<div class="flex flex-wrap mt-6 gap-5">
+			{exerciseData.map((exercise) => <ExerciseCard exercise={exercise} />)}	
+		</div>
 	</body>
 </html>
