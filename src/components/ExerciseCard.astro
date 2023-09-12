@@ -1,5 +1,7 @@
 ---
 import type {Exercises} from "../types/ExerciseType.ts";
+import IconButton from '@mui/material/IconButton';
+import { PlusIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/solid'
 
 interface Props {
     exercise : Exercises;
@@ -10,10 +12,16 @@ const {exercise} = Astro.props;
 ---
 
 <div class="link-card">
-    <div class="w-full flex items-center px-4 py-6 bg-white-800 bg-gradient-to-r from-white-900 to-white-800 rounded-lg shadow-md hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-400 hover:bg-gray-900 hover:text-blue-50 hover:shadow-lg transition-transform duration-500 transform hover:scale-105">
+    <div class="w-full flex items-center px-4 py-6 rounded-lg shadow-md ring ring-blue-300 hover:ring-blue-500">
         <h2 class="text-xl font-semibold text-black">
             {exercise.name}
         </h2>
         <img src={exercise.icon} class="w-6 h-6 ml-2" />
+        <IconButton aria-label="Example">
+            <PlusIcon className="w-6 h-6 ml-2" />
+        </IconButton>
+        <IconButton aria-label="Example">
+            <EllipsisHorizontalIcon className="w-6 h-6 ml-2" />
+        </IconButton>
     </div>
 </div>
