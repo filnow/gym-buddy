@@ -12,16 +12,18 @@ const {exercise} = Astro.props;
 ---
 
 <div class="link-card">
-    <div class="w-full flex items-center px-4 py-6 rounded-lg shadow-md ring ring-blue-300 hover:ring-blue-500">
-        <h2 class="text-xl font-semibold text-black">
+    <div class="w-64 flex items-center px-4 py-2 rounded-lg shadow-md ring ring-blue-300 hover:ring-blue-500">
+        <div class="text-xl font-semibold text-black">
             {exercise.name}
-        </h2>
-        <img src={exercise.icon} class="w-6 h-6 ml-2" />
-        <IconButton aria-label="Example">
-            <PlusIcon className="w-6 h-6 ml-2" />
-        </IconButton>
-        <IconButton aria-label="Example">
-            <EllipsisHorizontalIcon className="w-6 h-6 ml-2" />
-        </IconButton>
+        </div>
+        <img src={exercise.icon} class="w-6 h-6 ml-5" />
+        <div class="ml-16 flex flex-col items-center">
+            <IconButton aria-label="Example">
+              <PlusIcon className="w-6 h-6" />
+            </IconButton>
+            <IconButton aria-label="Example">
+              <EllipsisHorizontalIcon className="w-6 h-6" />
+            </IconButton>
+          </div>          
     </div>
 </div>
