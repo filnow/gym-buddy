@@ -2,6 +2,8 @@
 import type {Exercises} from "../types/ExerciseType.ts";
 import IconButton from '@mui/material/IconButton';
 import { PlusIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/solid'
+import { useEffect } from "react";
+import './Card.css'
 
 interface Props {
     exercise : Exercises;
@@ -12,7 +14,7 @@ const {exercise} = Astro.props;
 ---
 
 <div class="link-card">
-  <div class="w-100 flex items-center justify-between px-7 py-7 rounded-lg shadow-md ring ring-blue-300 hover:ring-blue-500 bg-white">
+  <div class="my-container">
       <div class="text-xl font-semibold text-black">
         {exercise.name}
       </div>

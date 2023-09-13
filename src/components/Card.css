@@ -1,0 +1,20 @@
+/* CSS */
+
+
+
+.my-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.75rem; /* You may adjust the padding value as needed */
+    border-radius: 0.5rem; /* You may adjust the border-radius value as needed */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* You may adjust the shadow values as needed */
+    border: 1px solid #93c5fd; /* You may adjust the border color as needed */
+    background-color: #ffffff; /* You may adjust the background color as needed */
+  }
+  
+  .my-container:hover {
+    border-color: #2563eb; /* You may adjust the hover border color as needed */
+  }
+  
