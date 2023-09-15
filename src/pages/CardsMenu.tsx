@@ -1,10 +1,16 @@
 import SideMenu from "../components/SideMenu.tsx";
 import ExerciseCard from '../components/ExerciseCard.tsx';
 import SearchBar from '../components/SearchBar.tsx';
+import { useState } from "react";
 import CategoryFilter from "../components/CategoryFilter.tsx";
 
 
 const CardsMenu = () => {
+    const [data, setData] = useState(Array<boolean>(0));
+
+    const sentData = (data : Array<boolean>) => {
+        setData(data);
+    }
 
     return (
         <div className="relative h-screen p-2 gap-3 flex items-stretch">
@@ -19,12 +25,12 @@ const CardsMenu = () => {
                     </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-7 ml-5 mt-10 mb-10">
-                <ExerciseCard />
+                <ExerciseCard updateData={data}/>
                 </div>
                 </div>
             </div>
             <div className="w-[350px] flex-col hidden lg:flex overflow-y-auto">
-                <CategoryFilter />
+                <CategoryFilter sendData={sentData} />
             </div>
         </div>
     );

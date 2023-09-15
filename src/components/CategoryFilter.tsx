@@ -15,7 +15,7 @@ const formControlLabelStyle = {
   }
 }
 
-export default function CategoryFilter(){
+export default function CategoryFilter(props : any){
 
     const [checkedState, setCheckedState] = useState(
         new Array(Object.keys(Categories).length).fill(false)
@@ -25,8 +25,8 @@ export default function CategoryFilter(){
         const updatedCheckedState = checkedState.map((item, index) =>
           index === position ? !item : item
         );
-        console.log(updatedCheckedState);
-    
+        
+        props.sendData(updatedCheckedState)
         setCheckedState(updatedCheckedState);
       };
 

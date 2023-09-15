@@ -20,11 +20,25 @@ const mapExerciseData = (categoryData: ExercisesType[],
   }));
 };
 
-export default function ExerciseCard() {
+export default function ExerciseCard(
+  {
+    updateData
+  }: {
+    updateData: Array<boolean>
+  }
+) {
 
-  const exerciseData: Exercises[] = categories.flatMap(category =>
-    mapExerciseData(category.data, category.name, category.icon, category.color)
-  );
+  const allFalse = updateData.every(value => value === false);
+
+  const exerciseData: Exercises[] = allFalse
+  ? categories.flatMap(category =>
+      mapExerciseData(category.data, category.name, category.icon, category.color)
+    )
+  : categories
+      .filter((_category, index) => updateData[index]) 
+      .flatMap(category =>
+        mapExerciseData(category.data, category.name, category.icon, category.color)
+      );
 
   return (
     <>
