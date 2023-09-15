@@ -4,7 +4,6 @@ import { PlusIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/solid'
 import './Card.css'
 import type { Exercises, ExercisesType } from "../types/ExerciseType";
 import { categories } from '../lib/CategoryList';
-import { useEffect } from 'react';
 
 
 const mapExerciseData = (categoryData: ExercisesType[], 
@@ -32,20 +31,25 @@ export default function ExerciseCard(
 ) {
 
   const allFalse = updateData.every(value => value === false);
+  const names = categories.flatMap(category => category.data.map(item => item.name))
 
-  const exerciseData: Exercises[] = allFalse
-  ? categories.flatMap(category =>
+  const filteredData = searchData === ''
+  ? names
+  : names.filter(el => el.toLowerCase().includes(searchData));
+
+  const mapAndFilterExerciseData = (data: typeof categories) => data
+    .flatMap(category =>
       mapExerciseData(category.data, category.name, category.icon, category.color)
     )
-  : categories
-      .filter((_category, index) => updateData[index]) 
-      .flatMap(category =>
-        mapExerciseData(category.data, category.name, category.icon, category.color)
-      );
+    .filter(exercise => filteredData.includes(exercise.name))
+    .map(exercise =>
+      mapExerciseData([exercise], exercise.category, exercise.icon, exercise.color)
+    )
+    .flat();
 
-  useEffect(() => {
-    console.log(searchData);
-  }, [searchData]);
+  const exerciseData: Exercises[] = allFalse
+    ? mapAndFilterExerciseData(categories)
+    : mapAndFilterExerciseData(categories.filter((_category, index) => updateData[index]));
 
   return (
     <>
