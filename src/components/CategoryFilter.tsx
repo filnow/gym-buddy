@@ -28,17 +28,6 @@ export default function CategoryFilter(){
         console.log(updatedCheckedState);
     
         setCheckedState(updatedCheckedState);
-
-        const totalPrice = updatedCheckedState.reduce(
-          (sum, currentState, index) => {
-            if (currentState === true) {
-              return sum + Categories[index];
-            }
-            return sum;
-          },
-          0
-        );
-    
       };
     
     
@@ -51,26 +40,24 @@ export default function CategoryFilter(){
       }
 
 	return (
-		<>
-            <FormGroup>
-                {Categories.map((name, index) => {
-                return (
-                    <li key={index}>
-                    <div className="toppings-list-item">
-                        <div className="left-section">
-                        <FormControlLabel control={
-                            <Checkbox
-                                checked={checkedState[index]}
-                                onChange={() => handleOnChange(index)}
-                                inputProps={{ 'aria-label': 'controlled' }}
-                            />} 
-                        label={name} sx={{...formControlLabelStyle}}/>
-                        </div>
-                    </div>
-                    </li>
-                );
-                })}
-            </FormGroup>
-		</>
+    <FormGroup>
+        {Categories.map((name, index) => {
+        return (
+            <li key={index}>
+            <div className="toppings-list-item">
+                <div className="left-section">
+                <FormControlLabel control={
+                    <Checkbox
+                        checked={checkedState[index]}
+                        onChange={() => handleOnChange(index)}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                    />} 
+                label={name} sx={{...formControlLabelStyle}}/>
+                </div>
+            </div>
+            </li>
+        );
+        })}
+    </FormGroup>
 	);
 }

@@ -1,4 +1,3 @@
-import { colors } from "../lib/CategoryColors";
 
 export interface Exercises {
     id: number;
