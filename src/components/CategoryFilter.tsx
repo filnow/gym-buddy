@@ -3,13 +3,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
-export default function CategoryFilter({
-    count: initialCount,
-}: {
-    count: boolean;
-}
-
-) {
+export default function CategoryFilter(){
 
     const Categories = [
         'Arms',
@@ -31,6 +25,7 @@ export default function CategoryFilter({
         const updatedCheckedState = checkedState.map((item, index) =>
           index === position ? !item : item
         );
+        console.log(updatedCheckedState);
     
         setCheckedState(updatedCheckedState);
 

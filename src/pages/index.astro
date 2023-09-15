@@ -1,8 +1,7 @@
 ---
 import SideMenu from "../components/SideMenu.astro";
 import FilterMenu from "../components/FilterMenu.astro";
-import ExerciseCard from '../components/ExerciseCard.astro';
-import { exerciseData } from '../lib/Exercises';
+import ExerciseCard from '../components/ExerciseCard.tsx';
 import Search from '../components/Search.astro';
 ---
 
@@ -31,7 +30,7 @@ import Search from '../components/Search.astro';
             </div>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-7 ml-5 mt-10 mb-10">
-          {exerciseData.map((exercise) => <ExerciseCard exercise={exercise} />)}  
+          <ExerciseCard />
           </div>
         </div>
       </div>
