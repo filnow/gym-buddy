@@ -29,8 +29,7 @@ export default function ExerciseCard(
     searchData: string
   }
 ) {
-
-  const allFalse = updateData.every(value => value === false);
+  
   const names = categories.flatMap(category => category.data.map(item => item.name))
 
   const filteredData = searchData === ''
@@ -42,12 +41,11 @@ export default function ExerciseCard(
       mapExerciseData(category.data, category.name, category.icon, category.color)
     )
     .filter(exercise => filteredData.includes(exercise.name))
-    .map(exercise =>
+    .flatMap(exercise =>
       mapExerciseData([exercise], exercise.category, exercise.icon, exercise.color)
-    )
-    .flat();
+    );
 
-  const exerciseData: Exercises[] = allFalse
+  const exerciseData: Exercises[] = updateData.every(value => value === false)
     ? mapAndFilterExerciseData(categories)
     : mapAndFilterExerciseData(categories.filter((_category, index) => updateData[index]));
 
