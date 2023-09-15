@@ -4,6 +4,7 @@ import { PlusIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/solid'
 import './Card.css'
 import type { Exercises, ExercisesType } from "../types/ExerciseType";
 import { categories } from '../lib/CategoryList';
+import { useEffect } from 'react';
 
 
 const mapExerciseData = (categoryData: ExercisesType[], 
@@ -22,9 +23,11 @@ const mapExerciseData = (categoryData: ExercisesType[],
 
 export default function ExerciseCard(
   {
-    updateData
+    updateData,
+    searchData
   }: {
-    updateData: Array<boolean>
+    updateData: Array<boolean>,
+    searchData: string
   }
 ) {
 
@@ -39,6 +42,10 @@ export default function ExerciseCard(
       .flatMap(category =>
         mapExerciseData(category.data, category.name, category.icon, category.color)
       );
+
+  useEffect(() => {
+    console.log(searchData);
+  }, [searchData]);
 
   return (
     <>
@@ -62,8 +69,7 @@ export default function ExerciseCard(
             </div>
         </div>
       </div>
-      );
-      })} 
+      );})} 
     </>
   );
 }
