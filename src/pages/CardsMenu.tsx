@@ -1,7 +1,7 @@
 import SideMenu from "../components/SideMenu.tsx";
-import FilterMenu from "../components/FilterMenu.tsx";
 import ExerciseCard from '../components/ExerciseCard.tsx';
 import SearchBar from '../components/SearchBar.tsx';
+import CategoryFilter from "../components/CategoryFilter.tsx";
 
 
 const CardsMenu = () => {
@@ -24,7 +24,7 @@ const CardsMenu = () => {
                 </div>
             </div>
             <div className="w-[350px] flex-col hidden lg:flex overflow-y-auto">
-                <FilterMenu />
+                <CategoryFilter />
             </div>
         </div>
     );

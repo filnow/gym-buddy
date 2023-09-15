@@ -26,7 +26,6 @@ export default function ExerciseCard() {
     mapExerciseData(category.data, category.name, category.icon, category.color)
   );
 
-
   return (
     <>
     {exerciseData.map((exercise) => {
