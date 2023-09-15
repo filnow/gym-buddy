@@ -9,7 +9,6 @@ export default function SearchBar(props : any){
   const [inputText, setInputText] = useState("");
 
   let inputHandler = (e : any) => {
-    //convert input text to lower case
     setInputText( e.target.value.toLowerCase());
   };
 

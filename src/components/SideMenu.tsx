@@ -1,4 +1,4 @@
-import { IconButton } from "@mui/material";
+import { IconButton, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { PlusIcon } from '@heroicons/react/24/solid'
 
 const SideMenu = () => {
@@ -21,6 +21,18 @@ const SideMenu = () => {
             <PlusIcon style={{ width: 24, height: 24 }} />
           </IconButton>
         </ul>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemText primary="Trash" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton component="a" href="#simple-list">
+              <ListItemText primary="Spam" />
+            </ListItemButton>
+          </ListItem>
+        </List>
       </div>
     </div>
   );
