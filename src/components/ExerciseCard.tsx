@@ -6,7 +6,8 @@ import type { Exercises, ExercisesType } from "../types/ExerciseType";
 import { categories } from '../constants/CategoryList';
 
 
-const mapExerciseData = (categoryData: ExercisesType[], 
+const mapExerciseData = (
+  categoryData: ExercisesType[], 
   category: string, 
   icon: string, 
   color: string): Exercises[] => {
@@ -49,6 +50,10 @@ export default function ExerciseCard(
     ? mapAndFilterExerciseData(categories)
     : mapAndFilterExerciseData(categories.filter((_category, index) => updateData[index]));
 
+  function buttonClick(id: number) {
+    console.log(id);
+  }
+
   return (
     <>
     {exerciseData.map((exercise) => {
@@ -61,7 +66,7 @@ export default function ExerciseCard(
             <div className="flex items-center"> 
               <img src={exercise.icon} className="w-6 h-6 ml-5" />
               <div className="ml-16 flex flex-col items-center">
-                <IconButton aria-label="Example">
+                <IconButton aria-label="Example" onClick={() => buttonClick(exercise.id)}>
                     <PlusIcon className="w-6 h-6" />
                 </IconButton>
                 <IconButton aria-label="Example">

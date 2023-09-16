@@ -3,23 +3,23 @@ import type { ExercisesType } from '../../types/ExerciseType';
 
 export const exerciseCardio: ExercisesType[] = [
     {
-        id: 1,
+        id: 16,
         name: 'Running',
     },
     {
-        id: 2,
+        id: 17,
         name: 'Cycling',
     },
     {
-        id: 3,
+        id: 18,
         name: 'Swimming',
     },
     {
-        id: 4,
+        id: 19,
         name: 'Rowing',
     },
     {
-        id: 5,
+        id: 20,
         name: 'Jumping Rope',
     },
 ]

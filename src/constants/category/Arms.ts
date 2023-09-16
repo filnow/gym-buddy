@@ -2,23 +2,23 @@ import type { ExercisesType } from '../../types/ExerciseType';
 
 export const exerciseArms: ExercisesType[] = [
     {
-        id: 1,
+        id: 6,
         name: 'Push Ups',
     },
     {
-        id: 2,
+        id: 7,
         name: 'Pull Ups',
     },
     {
-        id: 3,
+        id: 8,
         name: 'Bicep Curls',
     },
     {
-        id: 4,
+        id: 9,
         name: 'Tricep Extensions',
     },
     {
-        id: 5,
+        id: 10,
         name: 'Shoulder Press',
     },
 ]

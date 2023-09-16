@@ -2,23 +2,23 @@ import type { ExercisesType } from '../../types/ExerciseType';
 
 export const exerciseBack: ExercisesType[] = [
     {
-        id: 1,
+        id: 11,
         name: 'Pull Ups',
     },
     {
-        id: 2,
+        id: 12,
         name: 'Deadlift',
     },
     {
-        id: 3,
+        id: 13,
         name: 'Bent Over Row',
     },
     {
-        id: 4,
+        id: 14,
         name: 'Lat Pull Down',
     },
     {
-        id: 5,
+        id: 15,
         name: 'Reverse Fly',
     },
 ]
