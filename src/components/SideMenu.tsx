@@ -1,7 +1,17 @@
 import { IconButton, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { PlusIcon } from '@heroicons/react/24/solid'
 
-const SideMenu = () => {
+
+const SideMenu = (
+  {
+    id
+  }: {
+    id: number
+  }
+) => {
+  
+  console.log(id);
+
   return (
     <div className="flex flex-col flex-1 gap-2">
       <div className="bg-zinc-900 rounded-lg">

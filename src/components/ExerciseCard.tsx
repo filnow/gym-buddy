@@ -4,6 +4,7 @@ import { PlusIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/solid'
 import './Card.css'
 import type { Exercises, ExercisesType } from "../types/ExerciseType";
 import { categories } from '../constants/CategoryList';
+import { useState } from 'react';
 
 
 const mapExerciseData = (
@@ -24,13 +25,17 @@ const mapExerciseData = (
 export default function ExerciseCard(
   {
     updateData,
-    searchData
+    searchData,
+    sendIdData
+
   }: {
     updateData: Array<boolean>,
-    searchData: string
+    searchData: string,
+    sendIdData?: any
   }
 ) {
-  
+  const [_id, setId] = useState<number>(0);
+
   const names = categories.flatMap(category => category.data.map(item => item.name))
 
   const filteredData = searchData === ''
@@ -51,8 +56,10 @@ export default function ExerciseCard(
     : mapAndFilterExerciseData(categories.filter((_category, index) => updateData[index]));
 
   function buttonClick(id: number) {
-    console.log(id);
+    setId(id);
+    sendIdData(id);
   }
+
 
   return (
     <>
