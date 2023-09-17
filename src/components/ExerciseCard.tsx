@@ -11,14 +11,16 @@ const mapExerciseData = (
   categoryData: ExercisesType[], 
   category: string, 
   icon: string, 
-  color: string): Exercises[] => {
+  colorLight: string,
+  colorDark: string): Exercises[] => {
     
   return categoryData.map((item) => ({
     id: item.id,
     name: item.name,
     icon,
     category,
-    color,
+    colorLight,
+    colorDark
   }));
 };
 
@@ -44,11 +46,19 @@ export default function ExerciseCard(
 
   const mapAndFilterExerciseData = (data: typeof categories) => data
     .flatMap(category =>
-      mapExerciseData(category.data, category.name, category.icon, category.color)
+      mapExerciseData(category.data, 
+                      category.name, 
+                      category.icon, 
+                      category.colorLight, 
+                      category.colorDark)
     )
     .filter(exercise => filteredData.includes(exercise.name))
     .flatMap(exercise =>
-      mapExerciseData([exercise], exercise.category, exercise.icon, exercise.color)
+      mapExerciseData([exercise], 
+                      exercise.category, 
+                      exercise.icon, 
+                      exercise.colorLight, 
+                      exercise.colorDark)
     );
 
   const exerciseData: Exercises[] = updateData.every(value => value === false)
@@ -66,7 +76,7 @@ export default function ExerciseCard(
     {exerciseData.map((exercise) => {
       return (
       <div className="link-card">
-        <div className={`w-full flex items-center justify-between p-7 rounded-lg shadow-md border-4 ${exercise.color} bg-white transition-border duration-300 hover:border-blue-600`}>
+        <div className={`w-full flex items-center justify-between p-7 rounded-lg shadow-md border-4 ${exercise.colorLight} bg-white transition-border duration-300 ${exercise.colorDark}`}>
             <div className="text-xl font-semibold text-black">
               {exercise.name}
             </div>

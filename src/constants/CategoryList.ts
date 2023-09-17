@@ -11,13 +11,13 @@ import { exerciseStreching } from "./category/Streching";
   
 
 export const categories = [
-    { data: exerciseArms, name: 'Arms', icon: iconImages.iconArms, color: colors.red },
-    { data: exerciseLegs, name: 'Legs', icon: iconImages.iconLegs, color: colors.orange },
-    { data: exerciseAbs, name: 'Abs', icon: iconImages.iconAbs, color: colors.blue },
-    { data: exerciseChest, name: 'Chest', icon: iconImages.iconChest, color: colors.purple },
-    { data: exerciseBack, name: 'Back', icon: iconImages.iconBack, color: colors.green },
-    { data: exerciseShoulders, name: 'Shoulders', icon: iconImages.iconShoulders, color: colors.yellow },
-    { data: exerciseCardio, name: 'Cardio', icon: iconImages.iconCardio, color: colors.pink },
-    { data: exerciseStreching, name: 'Streching', icon: iconImages.iconStreching, color: colors.teal },
+    { data: exerciseArms, name: 'Arms', icon: iconImages.iconArms, colorLight: colors.red.light, colorDark: colors.red.dark },
+    { data: exerciseLegs, name: 'Legs', icon: iconImages.iconLegs, colorLight: colors.orange.light, colorDark: colors.orange.dark },
+    { data: exerciseAbs, name: 'Abs', icon: iconImages.iconAbs, colorLight: colors.blue.light, colorDark: colors.blue.dark},
+    { data: exerciseChest, name: 'Chest', icon: iconImages.iconChest, colorLight: colors.purple.light, colorDark: colors.purple.dark},
+    { data: exerciseBack, name: 'Back', icon: iconImages.iconBack, colorLight: colors.green.light, colorDark: colors.green.dark},
+    { data: exerciseShoulders, name: 'Shoulders', icon: iconImages.iconShoulders, colorLight: colors.indigo.light, colorDark: colors.indigo.dark},
+    { data: exerciseCardio, name: 'Cardio', icon: iconImages.iconCardio, colorLight: colors.pink.light, colorDark: colors.pink.dark},
+    { data: exerciseStreching, name: 'Streching', icon: iconImages.iconStreching, colorLight: colors.teal.light, colorDark: colors.teal.dark},
   ];
   

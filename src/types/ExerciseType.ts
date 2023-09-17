@@ -4,7 +4,8 @@ export interface Exercises {
     name: string;
     icon: string;
     category: string;
-    color: string;
+    colorLight: string;
+    colorDark: string;
 }
 
 export interface ExercisesType {
