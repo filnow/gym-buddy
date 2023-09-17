@@ -10,8 +10,7 @@ import { PlusIcon } from '@heroicons/react/24/solid';
 const formControlLabelStyle = {
   "& .MuiFormControlLabel-label": {
     fontSize: "1.5rem",
-    width: 300,
-    color: 'rgba(161,159,147,255)',
+    width: 300
   }
 }
 
@@ -32,14 +31,7 @@ export default function CategoryFilter(props : any){
 
 	return (
     <div className="flex flex-col flex-1 gap-2">
-      <div className="bg-zinc-900 rounded-lg">
-        <ul>
-          <IconButton aria-label="Example">
-            <PlusIcon className="w-6 h-6" />
-          </IconButton>
-        </ul>
-      </div>
-      <div className="bg-zinc-900 rounded-lg flex-1">
+      <div className="bg-slate-300 rounded-lg flex-1">
         <ul>
           <IconButton aria-label="Example">
             <PlusIcon className="w-6 h-6" />

@@ -30,7 +30,7 @@ const CardsMenu = () => {
             <div className="w-[350px] flex-col hidden lg:flex overflow-y-auto">
                 <SideMenu id={idData}/>  
             </div>
-            <div className="rounded-lg bg-zinc-900 flex-1 mx-auto overflow-y-auto scrollbar-hide">
+            <div className="rounded-lg bg-slate-300 flex-1 mx-auto overflow-y-auto scrollbar-hide">
                 <div className="flex flex-col items-center justify-center">
                     <div className="w-full sm:w-1/2 lg:w-1/2 mt-10 ml-4 justify-center">
                         <SearchBar sendData={sentSearchData}/>

@@ -66,7 +66,7 @@ export default function ExerciseCard(
     {exerciseData.map((exercise) => {
       return (
       <div className="link-card">
-        <div className="my-container">
+        <div className={`w-full flex items-center justify-between p-7 rounded-lg shadow-md border-4 ${exercise.color} bg-white transition-border duration-300 hover:border-blue-600`}>
             <div className="text-xl font-semibold text-black">
               {exercise.name}
             </div>
