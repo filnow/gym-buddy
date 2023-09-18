@@ -1,9 +1,17 @@
 import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
 import { Collapse, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { useState } from "react";
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import { categories } from '../constants/CategoryList';
+import ClearIcon from '@mui/icons-material/Clear';
 
-export default function SideCard() {
+
+export default function SideCard(
+    {
+        id
+    }: {
+        id: number
+    }
+) {
 
     const [open, setOpen] = useState(false);
 
@@ -11,13 +19,18 @@ export default function SideCard() {
         setOpen(!open);
     };
 
+    
+    const exercise = categories.flatMap(category => category.data).find(exercise => exercise.id === id)?.name;
+
+
+    console.log(exercise);
     return (
         <List>
             <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
-                    <InboxIcon />
+                    <ClearIcon />
                 </ListItemIcon>
-                <ListItemText primary="Inbox" />
+                <ListItemText primary={exercise} />
                 {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>

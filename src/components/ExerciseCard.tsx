@@ -1,7 +1,6 @@
 
 import IconButton from '@mui/material/IconButton';
 import { PlusIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/solid'
-import './Card.css'
 import type { Exercises, ExercisesType } from "../types/ExerciseType";
 import { categories } from '../constants/CategoryList';
 import { useState } from 'react';

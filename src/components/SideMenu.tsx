@@ -11,7 +11,6 @@ const SideMenu = (
   }
 ) => {
   
-  console.log(id);
 
   return (
     <div className="flex flex-col flex-1 gap-2">
@@ -21,8 +20,7 @@ const SideMenu = (
         </IconButton>
       </div>
       <div className="bg-slate-300 rounded-lg flex-1">
-        <SideCard />
-        <SideCard />
+        <SideCard id={id}/>
       </div>
     </div>
   );
