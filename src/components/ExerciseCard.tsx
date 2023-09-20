@@ -5,6 +5,12 @@ import { categories } from '../constants/CategoryList';
 import { useState } from 'react';
 
 
+interface ExerciseCardProps {
+  updateData: Array<boolean>;
+  searchData: string;
+  sendIdData: (data: number) => void; 
+}
+
 const mapExerciseData = (
   categoryData: ExercisesType[], 
   category: string, 
@@ -28,12 +34,8 @@ export default function ExerciseCard(
     searchData,
     sendIdData
 
-  }: {
-    updateData: Array<boolean>,
-    searchData: string,
-    sendIdData?: any
-  }
-) {
+  }: ExerciseCardProps) {
+
   const [_id, setId] = useState<number>(0);
 
   const names = categories.flatMap(category => category.data.map(item => item.name))

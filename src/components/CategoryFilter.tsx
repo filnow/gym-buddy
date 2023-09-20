@@ -7,6 +7,10 @@ import { IconButton } from "@mui/material";
 import { PlusIcon } from '@heroicons/react/24/solid';
 
 
+interface CategoryFilterProps {
+  sendData: (data: Array<boolean>) => void;
+}
+
 const formControlLabelStyle = {
   "& .MuiFormControlLabel-label": {
     fontSize: "1.5rem",
@@ -14,7 +18,7 @@ const formControlLabelStyle = {
   }
 }
 
-export default function CategoryFilter(props : any){
+export default function CategoryFilter(props : CategoryFilterProps){
 
     const [checkedState, setCheckedState] = useState(
         new Array(Object.keys(Categories).length).fill(false)

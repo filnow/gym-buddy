@@ -1,24 +1,21 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IconButton, InputBase, Paper } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
-export default function SearchBar(props : any){
+interface SearchBarProps {
+  sendData: (data: string) => void;
+}
+
+export default function SearchBar(props : SearchBarProps){
 
   const [inputText, setInputText] = useState("");
 
-  let inputHandler = (e : any) => {
-    setInputText( e.target.value.toLowerCase());
+  const handleInput = (input: string) => {
+    setInputText(input);
+    props.sendData(input);
   };
-
-  const onDelete = () => {
-    setInputText("");
-  }
-
-  useEffect(() => {
-    props.sendData(inputText);
-  }, [inputText]);
 
   return (
     <Paper
@@ -32,10 +29,10 @@ export default function SearchBar(props : any){
         className="ml-1 flex-1"
         placeholder="Search exercises..."
         inputProps={{ 'aria-label': 'search google maps' }}
-        onChange={inputHandler}
+        onChange={(e) => handleInput(e.target.value.toLowerCase())}
         value={inputText}
       />
-      <IconButton aria-label="delete" onClick={onDelete} >
+      <IconButton aria-label="delete" onClick={() => handleInput("")} >
             <DeleteIcon className="w-5 h-5 text-gray-400"/>
       </IconButton>
     </Paper>
