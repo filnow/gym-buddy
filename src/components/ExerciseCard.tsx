@@ -1,4 +1,3 @@
-
 import IconButton from '@mui/material/IconButton';
 import { PlusIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/solid'
 import type { Exercises, ExercisesType } from "../types/ExerciseType";

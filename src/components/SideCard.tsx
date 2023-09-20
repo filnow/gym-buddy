@@ -33,7 +33,8 @@ export default function SideCard(
           prevExerciseList.filter((_, index) => index !== indexToDelete)
         );
       };
-
+    
+    
 
     return (
         <List>
