@@ -1,6 +1,9 @@
 import HomeIcon from '@mui/icons-material/Home';
 import ClearIcon from '@mui/icons-material/Clear';
-import { List, ListItemButton, ListItemIcon, ListItemText, IconButton } from "@mui/material";
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import { List, ListItemButton, ListItemText, IconButton, ListItem, Modal } from "@mui/material";
+import { useState } from 'react';
+import ExerciseParams from './ExerciseParams';
 
 
 type SideMenuProps = {
@@ -8,12 +11,17 @@ type SideMenuProps = {
   setExerciseList: (data: Array<string>) => void;
 };
 
+
+
 const SideMenu = ({ exerciseList, setExerciseList }: SideMenuProps) => {
-	
+
 	const handleDelete = (exerciseNameToDelete: string) => {
     setExerciseList(exerciseList.filter(exercise => exercise !== exerciseNameToDelete));
   }
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div className="flex flex-col flex-1 gap-2">
@@ -25,15 +33,21 @@ const SideMenu = ({ exerciseList, setExerciseList }: SideMenuProps) => {
       <div className="bg-slate-300 rounded-lg flex-1">
         <List>
           {exerciseList.map((exerciseItem, index) => (
-              <ListItemButton key={index}>
-                  <ListItemIcon>
-                    <ClearIcon onClick={() => handleDelete(exerciseItem)}/>
-                  </ListItemIcon>
+              <ListItem key={index}>
                   <ListItemText primary={exerciseItem} />
-              </ListItemButton>
+                  <ListItemButton onClick={handleOpen}>
+                    <FitnessCenterIcon />
+                  </ListItemButton>
+                  <ListItemButton onClick={() => handleDelete(exerciseItem)}>
+                    <ClearIcon/>
+                  </ListItemButton>
+              </ListItem>
           ))}
         </List>
       </div>
+      <Modal open={open} onClose={handleClose}>
+        <ExerciseParams setModalState={handleClose}/>
+      </Modal>
     </div>
   );
 };
