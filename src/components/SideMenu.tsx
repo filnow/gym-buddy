@@ -12,7 +12,6 @@ type SideMenuProps = {
 };
 
 
-
 const SideMenu = ({ exerciseList, setExerciseList }: SideMenuProps) => {
 
 	const handleDelete = (exerciseNameToDelete: string) => {
@@ -20,8 +19,14 @@ const SideMenu = ({ exerciseList, setExerciseList }: SideMenuProps) => {
   }
 
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const [exerciseName, setExerciseName] = useState("");
+
+  const handleOpen = (exerciseNameToAdd: string) => {
+    setOpen(true);
+    setExerciseName(exerciseNameToAdd);
+  }
   const handleClose = () => setOpen(false);
+
 
   return (
     <div className="flex flex-col flex-1 gap-2">
@@ -35,7 +40,7 @@ const SideMenu = ({ exerciseList, setExerciseList }: SideMenuProps) => {
           {exerciseList.map((exerciseItem, index) => (
               <ListItem key={index}>
                   <ListItemText primary={exerciseItem} />
-                  <ListItemButton onClick={handleOpen}>
+                  <ListItemButton onClick={() => handleOpen(exerciseItem)}>
                     <FitnessCenterIcon />
                   </ListItemButton>
                   <ListItemButton onClick={() => handleDelete(exerciseItem)}>
@@ -46,7 +51,7 @@ const SideMenu = ({ exerciseList, setExerciseList }: SideMenuProps) => {
         </List>
       </div>
       <Modal open={open} onClose={handleClose}>
-        <ExerciseParams setModalState={handleClose}/>
+        <ExerciseParams exerciseName={exerciseName} setModalState={handleClose}/>
       </Modal>
     </div>
   );
