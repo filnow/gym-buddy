@@ -11,12 +11,12 @@ const CardsMenu = () => {
 
     const[searchData, setSearchData] = useState<string>("");
 
-    const[idData, setIdData] = useState<number>(0);
+    const[exerciseData, setExerciseData] = useState<Array<string>>([]);
 
-    const sentIdData = (data : number) => {
-        setIdData(data);
+    const sendExerciseList = (data : Array<string>) => {
+        setExerciseData(data);
     }
-
+   
     const sentData = (data : Array<boolean>) => {
         setData(data);
     }
@@ -28,15 +28,15 @@ const CardsMenu = () => {
     return (
         <div className="relative h-screen p-2 gap-3 flex items-stretch">
             <div className="w-[350px] flex-col hidden lg:flex overflow-y-auto">
-                <SideMenu id={idData}/>  
-            </div>
+                <SideMenu exerciseList={exerciseData} setExerciseList={sendExerciseList}/>  
+            </div> 
             <div className="rounded-lg bg-slate-300 flex-1 mx-auto overflow-y-auto scrollbar-hide">
                 <div className="flex flex-col items-center justify-center">
                     <div className="w-full sm:w-1/2 lg:w-1/2 mt-10 ml-4 justify-center">
                         <SearchBar sendData={sentSearchData}/>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-7 ml-5 mt-10 mb-10">
-                        <ExerciseCard updateData={data} searchData={searchData} sendIdData={sentIdData}/>
+                        <ExerciseCard updateData={data} searchData={searchData} exerciseList={exerciseData} sendExerciseList={sendExerciseList}/>
                     </div>
                 </div>
             </div>
