@@ -2,13 +2,14 @@ import IconButton from '@mui/material/IconButton';
 import { PlusIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/solid'
 import type { Exercises, ExercisesType } from "../types/ExerciseType";
 import { categories } from '../constants/CategoryList';
+import { defaultExerciseData } from '../constants/DeafaultParams';
 
 
 interface ExerciseCardProps {
   updateData: Array<boolean>;
   searchData: string;
-  exerciseList: Array<string>;
-  sendExerciseList: (data: Array<string>) => void; 
+  exerciseList: {};
+  sendExerciseList: (data: {}) => void; 
 }
 
 const mapExerciseData = (
@@ -63,12 +64,14 @@ export default function ExerciseCard(
   const exerciseData: Exercises[] = updateData.every(value => value === false)
     ? mapAndFilterExerciseData(categories)
     : mapAndFilterExerciseData(categories.filter((_category, index) => updateData[index]));
-
   
   function buttonClick(id: number) {
     const exercise = categories.flatMap(category => category.data).find(exercise => exercise.id === id)?.name;
-    if (exercise && !exerciseList.includes(exercise)) {
-      sendExerciseList([...exerciseList, exercise]);
+    if (exercise && !Object.keys(exerciseList).includes(exercise)) {
+      sendExerciseList((prevExerciseList: {}) => ({
+        ...prevExerciseList,
+        [exercise]: defaultExerciseData,
+      }));
     }
   }
 

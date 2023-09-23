@@ -6,16 +6,23 @@ import { useState } from 'react';
 import ExerciseParams from './ExerciseParams';
 
 
-type SideMenuProps = {
-  exerciseList: Array<string>;
-  setExerciseList: (data: Array<string>) => void;
+interface SideMenuProps {
+  exerciseList: {};
+  setExerciseList: (data: {}) => void;
 };
+
+interface ExerciseList {
+  [key: string]: {};
+}
 
 
 const SideMenu = ({ exerciseList, setExerciseList }: SideMenuProps) => {
 
 	const handleDelete = (exerciseNameToDelete: string) => {
-    setExerciseList(exerciseList.filter(exercise => exercise !== exerciseNameToDelete));
+    setExerciseList((prevData: ExerciseList) => {
+      const { [exerciseNameToDelete]: deletedItem, ...newData } = prevData;
+      return newData;
+    });
   }
 
   const [open, setOpen] = useState(false);
@@ -37,7 +44,7 @@ const SideMenu = ({ exerciseList, setExerciseList }: SideMenuProps) => {
       </div>
       <div className="bg-slate-300 rounded-lg flex-1">
         <List>
-          {exerciseList.map((exerciseItem, index) => (
+          {Object.keys(exerciseList).map((exerciseItem, index) => (
               <ListItem key={index}>
                   <ListItemText primary={exerciseItem} />
                   <ListItemButton onClick={() => handleOpen(exerciseItem)}>
@@ -51,7 +58,7 @@ const SideMenu = ({ exerciseList, setExerciseList }: SideMenuProps) => {
         </List>
       </div>
       <Modal open={open} onClose={handleClose}>
-        <ExerciseParams exerciseName={exerciseName} setModalState={handleClose}/>
+        <ExerciseParams exerciseName={exerciseName} exerciseList={exerciseList} setModalState={handleClose} setExerciseList={setExerciseList}/>
       </Modal>
     </div>
   );
