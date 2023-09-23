@@ -8,8 +8,8 @@ import { defaultExerciseData } from '../constants/DeafaultParams';
 interface ExerciseCardProps {
   updateData: Array<boolean>;
   searchData: string;
-  exerciseList: {};
-  sendExerciseList: (data: {}) => void; 
+  exerciseObject: {};
+  sendExerciseObject: (data: {}) => void; 
 }
 
 const mapExerciseData = (
@@ -33,8 +33,8 @@ export default function ExerciseCard(
   {
     updateData,
     searchData,
-    exerciseList,
-    sendExerciseList
+    exerciseObject,
+    sendExerciseObject
 
   }: ExerciseCardProps) {
 
@@ -67,8 +67,8 @@ export default function ExerciseCard(
   
   function buttonClick(id: number) {
     const exercise = categories.flatMap(category => category.data).find(exercise => exercise.id === id)?.name;
-    if (exercise && !Object.keys(exerciseList).includes(exercise)) {
-      sendExerciseList((prevExerciseList: {}) => ({
+    if (exercise && !Object.keys(exerciseObject).includes(exercise)) {
+      sendExerciseObject((prevExerciseList: {}) => ({
         ...prevExerciseList,
         [exercise]: defaultExerciseData,
       }));

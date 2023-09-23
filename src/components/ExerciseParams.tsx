@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -10,18 +10,30 @@ import { defaultExerciseData } from '../constants/DeafaultParams';
 
 interface ExerciseInputProps {
     exerciseName: string;
-    exerciseList: {};
+    exerciseObject: {};
     setModalState: () => void;
-    setExerciseList: (data: {}) => void;
+    setExerciseObject: (data: {}) => void;
 }
 
+interface ExerciseObject {
+    [key: string]: {};
+}
 
-const ExerciseInput = ({exerciseName, exerciseList, setModalState, setExerciseList} : ExerciseInputProps) => {
+const ExerciseInput = ({exerciseName, exerciseObject, setModalState, setExerciseObject} : ExerciseInputProps) => {
 
     const [exerciseData, setExerciseData] = useState<ExerciseDataState>(defaultExerciseData);
     
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>, field: ExerciseField) => {
         const newValue = field === ExerciseField.Weight ? parseFloat(event.target.value) || 0 : event.target.value;
+        
+        setExerciseObject((prevExerciseList: ExerciseObject) => ({
+          ...prevExerciseList,
+          [exerciseName]: {
+            ...prevExerciseList[exerciseName],
+            [field]: newValue,
+          },
+        }));
+    
         setExerciseData(prevData => ({
         ...prevData,
         [field]: newValue,
@@ -30,16 +42,9 @@ const ExerciseInput = ({exerciseName, exerciseList, setModalState, setExerciseLi
 
     const handleSave = () => {
         setModalState();
+        console.log(exerciseObject);
     };
 
-    useEffect(() => {
-      setExerciseList((prevExerciseList: {}) => ({
-        ...prevExerciseList,
-        [exerciseName]: exerciseData,
-      }));
-      console.log(exerciseList);
-    }
-    , [exerciseData]);
 
 
     return (
