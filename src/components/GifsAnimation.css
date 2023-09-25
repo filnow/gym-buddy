@@ -1,0 +1,44 @@
+.App {
+    text-align: center;
+  }
+  
+  .image-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    animation-duration: 10s; /* Adjust the duration as needed */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: moveImage;
+  }
+  
+  @keyframes moveImage {
+    0%, 100% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  
+  .move {
+    animation-play-state: running;
+  }
+  
+  
+::-webkit-scrollbar {
+    width: 0.5rem; 
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  .scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
