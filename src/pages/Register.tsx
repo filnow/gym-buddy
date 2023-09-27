@@ -1,20 +1,47 @@
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { useSignUp } from '../api/auth';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../constants/Routes';
 
+interface SignUpFormProps {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 
 export default function Register() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-      confirmPassword: data.get('confirm-password'),
-    });
+
+  const navigate = useNavigate();
+
+  const methods = useForm<SignUpFormProps>({
+    defaultValues: { email: "", password: "", confirmPassword: "" },
+  });
+
+  const { mutate, isLoading } = useSignUp();
+
+  const {
+    handleSubmit,
+    watch,
+  } = methods;
+
+  const onSubmit = (data: SignUpFormProps) => {
+    mutate(
+      { email: data.email, password: data.password },
+      {
+        onSuccess: (response) => {
+          console.log(response);
+          navigate(ROUTES.HOME);
+        },
+        onError: (error) => {
+          console.log(error);
+        },
+      }
+    );
   };
 
   return (
@@ -30,7 +57,7 @@ export default function Register() {
           <Typography component="h1" variant="h5">
             REGISTER
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate className='mt-5'>
+          <Box component="form" onClick={handleSubmit(onSubmit)} noValidate className='mt-5'>
             <TextField
               margin="normal"
               required
