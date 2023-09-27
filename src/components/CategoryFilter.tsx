@@ -4,7 +4,6 @@ import { gifsList } from '../constants/GifsList';
 
 const CategoryFilter = () => {
  
-
   return (
     <div className="App">
       <div className="image-container scrollbar">

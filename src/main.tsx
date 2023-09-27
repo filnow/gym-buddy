@@ -1,11 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import CardsMenu from './pages/CardsMenu.js'
-import LoginForm from './pages/LoginForm.js'
 import './utils/index.css'
+import { Router } from './router/Router.js'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <CardsMenu />
+    <Router />
   </React.StrictMode>,
 )
