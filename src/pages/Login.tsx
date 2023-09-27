@@ -1,14 +1,23 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { Link } from "react-router-dom";
+import { ROUTES } from '../constants/Routes';
+import { styled } from '@mui/material';
+
+const StyledLink = styled(Link)(({ theme }) => ({
+  textDecoration: "none",
+  color: theme.palette.primary.main,
+  "&:hover": {
+    color: theme.palette.primary.dark,
+  },
+}));
 
 
-export default function LoginForm() {
+export default function Login() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -60,6 +69,9 @@ export default function LoginForm() {
             >
               Sign In
             </Button>
+            <Typography component="h1" variant="h5" sx={{ ml: 3 }}>
+              Don't have an account? <StyledLink to={ROUTES.REGISTER}>Sign up</StyledLink>
+            </Typography>
           </Box>
         </Box>
       </Container>
