@@ -2,11 +2,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import { IconButton, InputBase, Paper } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { SearchBarProps } from '../types/PropsType';
 
-
-interface SearchBarProps {
-  sendData: (data: string) => void;
-}
 
 export default function SearchBar(props : SearchBarProps){
 

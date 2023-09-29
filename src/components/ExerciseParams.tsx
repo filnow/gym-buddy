@@ -6,18 +6,8 @@ import { ExerciseField } from '../enum/ExerciseField';
 import { inputFields } from '../constants/InputFields';
 import { ExerciseDataState } from '../types/ExerciseDataType';
 import { defaultExerciseData } from '../constants/DeafaultParams';
+import { ExerciseInputProps, ExerciseObject } from '../types/PropsType';
 
-
-interface ExerciseInputProps {
-    exerciseName: string;
-    exerciseObject: {};
-    setModalState: () => void;
-    setExerciseObject: (data: {}) => void;
-}
-
-interface ExerciseObject {
-    [key: string]: {};
-}
 
 const ExerciseInput = ({exerciseName, exerciseObject, setModalState, setExerciseObject} : ExerciseInputProps) => {
 
@@ -40,13 +30,6 @@ const ExerciseInput = ({exerciseName, exerciseObject, setModalState, setExercise
         }));
     };
 
-    const handleSave = () => {
-        setModalState();
-        console.log(exerciseObject);
-    };
-
-
-
     return (
         <Box
           className="fixed inset-0 flex flex-col justify-center items-center bg-gray-900 bg-opacity-50 bg-white p-4 rounded-lg shadow-lg flex flex-col"
@@ -63,7 +46,7 @@ const ExerciseInput = ({exerciseName, exerciseObject, setModalState, setExercise
                 />
               </Box>
             ))}
-            <Button variant="contained" color="primary" onClick={handleSave}>
+            <Button variant="contained" color="primary" onClick={() => setModalState()}>
               Save
             </Button>
           </Box>

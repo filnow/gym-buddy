@@ -3,14 +3,8 @@ import { PlusIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/solid'
 import type { Exercises, ExercisesType } from "../types/ExerciseType";
 import { categories } from '../constants/CategoryList';
 import { defaultExerciseData } from '../constants/DeafaultParams';
+import { ExerciseCardProps } from '../types/PropsType';
 
-
-interface ExerciseCardProps {
-  updateData: Array<boolean>;
-  searchData: string;
-  exerciseObject: {};
-  sendExerciseObject: (data: {}) => void; 
-}
 
 const mapExerciseData = (
   categoryData: ExercisesType[], 
@@ -67,6 +61,7 @@ export default function ExerciseCard(
   
   function buttonClick(id: number) {
     const exercise = categories.flatMap(category => category.data).find(exercise => exercise.id === id)?.name;
+    
     if (exercise && !Object.keys(exerciseObject).includes(exercise)) {
       sendExerciseObject((prevExerciseList: {}) => ({
         ...prevExerciseList,
@@ -74,7 +69,6 @@ export default function ExerciseCard(
       }));
     }
   }
-
 
   return (
     <>

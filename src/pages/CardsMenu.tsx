@@ -2,15 +2,13 @@ import SideMenu from "../components/SideMenu.tsx";
 import ExerciseCard from '../components/ExerciseCard.tsx';
 import SearchBar from '../components/SearchBar.tsx';
 import { useState } from "react";
-import CategoryFilter from "../components/CategoryFilter.tsx";
+import Animation from "../components/Animation.tsx";
 
 
 const CardsMenu = () => {
 
     const [filterData, setFilterData] = useState(Array<boolean>(0));
-
     const[searchData, setSearchData] = useState<string>("");
-
     const [exerciseObject, setExerciseObject] = useState({});
 
     const sendExerciseObject = (data : {}) => {
@@ -41,7 +39,7 @@ const CardsMenu = () => {
                 </div>
             </div>
             <div className="w-[350px] flex-col hidden lg:flex overflow-y-auto">
-                <CategoryFilter/>
+                <Animation/>
             </div>
         </div>
     );

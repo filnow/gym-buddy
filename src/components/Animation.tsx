@@ -2,7 +2,7 @@ import './GifsAnimation.css';
 import { gifsList } from '../constants/GifsList'; 
 
 
-const CategoryFilter = () => {
+export default function Animation() {
  
   return (
     <div className="App">
@@ -19,4 +19,4 @@ const CategoryFilter = () => {
   );
 };
 
-export default CategoryFilter;
+

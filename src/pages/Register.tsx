@@ -7,29 +7,29 @@ import { useSignUp } from '../api/auth';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../constants/Routes';
-
-interface SignUpFormProps {
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+import { login } from "../slices/authSlice";
+import { useAppDispatch } from "../store/store";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { SignUpFormProps } from '../types/FormType';
 
 
 export default function Register() {
 
   const navigate = useNavigate();
-
+  const dispatch = useAppDispatch();
   const { mutate, isLoading } = useSignUp();
-
   const { register, handleSubmit, watch} = useForm<SignUpFormProps>();
 
   const onSubmit = (data: SignUpFormProps) => {
-    console.log(data);
     mutate(
       { email: data.email, password: data.password },
       {
         onSuccess: (response) => {
-          console.log(response);
+          dispatch(
+            login({
+              uid: response.uid,
+            })
+          );
           navigate(ROUTES.HOME);
         },
         onError: (error) => {
@@ -88,9 +88,19 @@ export default function Register() {
             disabled={isLoading}
             sx={{ mt: 3, mb: 2 }}
           >
-            Register and Sign In
+            Register and Login
           </Button>
         </Box>
+        <Button
+            fullWidth
+            variant="contained"
+            disabled={isLoading}
+            sx={{ mt: 1, mb: 2 }}
+            onClick={() => navigate(ROUTES.LOGIN)}
+          >
+            <ArrowBackIcon sx={{mr: 2}}/>
+            Back to Login
+        </Button>
       </Box>
     </Container>
   );
