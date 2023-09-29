@@ -14,22 +14,17 @@ interface SignUpFormProps {
   confirmPassword: string;
 }
 
+
 export default function Register() {
 
   const navigate = useNavigate();
 
-  const methods = useForm<SignUpFormProps>({
-    defaultValues: { email: "", password: "", confirmPassword: "" },
-  });
-
   const { mutate, isLoading } = useSignUp();
 
-  const {
-    handleSubmit,
-    watch,
-  } = methods;
+  const { register, handleSubmit, watch} = useForm<SignUpFormProps>();
 
   const onSubmit = (data: SignUpFormProps) => {
+    console.log(data);
     mutate(
       { email: data.email, password: data.password },
       {
@@ -45,57 +40,58 @@ export default function Register() {
   };
 
   return (
-      <Container component="main" maxWidth="xs">
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Typography component="h1" variant="h5">
-            REGISTER
-          </Typography>
-          <Box component="form" onClick={handleSubmit(onSubmit)} noValidate className='mt-5'>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="confirm-password"
-              label="Confirm Password"
-              type="password"
-              id="confirm-password"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Register and Sign In
-            </Button>
-          </Box>
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography component="h1" variant="h5">
+          REGISTER
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate className='mt-5'>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            type='email'
+            label='Email'
+            {...register("email", { required: true })}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            type='password'
+            label='Password'
+            {...register("password", { required: true })}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            type='password'
+            label='Confirm Password'
+            {...register("confirmPassword", {
+              required: true,
+              validate: (value: string) =>
+                value === watch('password') || "The passwords do not match",
+            })}
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            disabled={isLoading}
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Register and Sign In
+          </Button>
         </Box>
-      </Container>
+      </Box>
+    </Container>
   );
 }
