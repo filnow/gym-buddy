@@ -16,10 +16,10 @@ export const exerciseShoulders: ExercisesType[] = [
     },
     {
         id: 34,
-        name: 'Reverse Fly',
+        name: 'Overhead Press',
     },
     {
         id: 35,
-        name: 'Upright Row',   
+        name: 'Arm Abduction',   
     },
 ]

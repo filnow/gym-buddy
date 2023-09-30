@@ -80,7 +80,7 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
           <LogoutIcon className="w-24 h-24 ml-2" />
         </IconButton>
       </div>
-      <div className="bg-slate-300 rounded-lg flex-1">
+      <List className="bg-slate-300 rounded-lg flex-1">
         <IconButton onClick={() => setCollapseOpen(!collapseOpen)}>
           <ListItemText primary="Category filters" />
           <TuneIcon className="w-24 h-24 ml-2" />
@@ -91,8 +91,8 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
           <FormGroup>
             {Object.keys(Categories).map((name, index) => {
             return (
-              <div className="toppings-list-item ml-7">
-                  <div className="left-section">
+              <List>
+                <ListItem key={index}>
                   <FormControlLabel control={
                       <Checkbox
                           checked={checkedState[index]}
@@ -100,12 +100,16 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
                           inputProps={{ 'aria-label': 'controlled' }}
                       />} 
                   label={name} sx={{...formControlLabelStyle}}/>
-                  </div>
-              </div>
+                </ListItem>
+              </List>
             );
             })}
           </FormGroup>
         </Collapse>
+        {collapseOpen ? <Divider /> : null}
+        <ListItemText className='ml-2'>
+          Add exercises to your workout below:
+        </ListItemText>
         <Divider />
         <List>
           {Object.keys(exerciseObject).map((exerciseItem, index) => (
@@ -120,7 +124,8 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
               </ListItem>
           ))}
         </List>
-      </div>
+        {Object.keys(exerciseObject).length > 0 ? <Divider /> : null}
+      </List>
       <Modal open={open} onClose={() => setOpen(false)}>
         <ExerciseParams exerciseName={exerciseName} 
                         exerciseObject={exerciseObject} 

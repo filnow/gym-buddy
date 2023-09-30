@@ -16,7 +16,7 @@ export const exerciseCardio: ExercisesType[] = [
     },
     {
         id: 19,
-        name: 'Rowing',
+        name: 'Ropes',
     },
     {
         id: 20,

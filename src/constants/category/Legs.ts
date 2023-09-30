@@ -15,10 +15,10 @@ export const exerciseLegs: ExercisesType[] = [
     },
     {
         id: 29,
-        name: 'Leg Press',
+        name: 'Deadlifts',
     },
     {
         id: 30,
-        name: 'Leg Extensions',
+        name: 'Hip Thrusts',
     },
 ]

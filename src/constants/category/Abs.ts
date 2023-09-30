@@ -3,7 +3,7 @@ import type { ExercisesType } from '../../types/ExerciseType';
 export const exerciseAbs: ExercisesType[] = [
     {
         id: 1,
-        name: 'Crunches',
+        name: 'Farmers Walk',
     },
     {
         id: 2,
@@ -19,6 +19,6 @@ export const exerciseAbs: ExercisesType[] = [
     },
     {
         id: 5,
-        name: 'Bicycle Crunches',
+        name: 'Knee Extension',
     },
 ]

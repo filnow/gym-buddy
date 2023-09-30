@@ -7,7 +7,7 @@ export const exerciseBack: ExercisesType[] = [
     },
     {
         id: 12,
-        name: 'Deadlift',
+        name: 'Pull Downs',
     },
     {
         id: 13,

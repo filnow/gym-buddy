@@ -15,10 +15,10 @@ export const exerciseArms: ExercisesType[] = [
     },
     {
         id: 9,
-        name: 'Tricep Extensions',
+        name: 'Ropes pull down',
     },
     {
         id: 10,
-        name: 'Shoulder Press',
+        name: 'Dumbbell Press',
     },
 ]
