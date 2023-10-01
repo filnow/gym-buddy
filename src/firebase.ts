@@ -1,6 +1,18 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { CollectionReference,
+         DocumentData,
+         collection,
+         getFirestore, } from "firebase/firestore";
+import { Workout } from "./types/WorkoutType.ts";
+
+
+const createCollection = <T = DocumentData>(collectionName: string) => {
+  return collection(getFirestore(), collectionName) as CollectionReference<
+    T,
+    DocumentData
+  >;
+};
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -13,6 +25,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+export const workoutCollection = createCollection<Workout>("workouts");
 
 export default app;
 export const auth = getAuth(app);

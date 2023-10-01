@@ -1,7 +1,7 @@
 import HomeIcon from '@mui/icons-material/Home';
 import ClearIcon from '@mui/icons-material/Clear';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import { List, ListItemButton, ListItemText, IconButton, ListItem, Modal, Collapse, Divider } from "@mui/material";
+import { List, ListItemButton, ListItemText, IconButton, ListItem, Modal, Collapse, Divider, Button } from "@mui/material";
 import { useState } from 'react';
 import ExerciseParams from './ExerciseParams';
 import Checkbox from '@mui/material/Checkbox';
@@ -13,9 +13,10 @@ import TuneIcon from '@mui/icons-material/Tune';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 import { useSignOut } from '../api/auth';
-import { useAppDispatch } from '../store/store';
-import { logout } from '../slices/authSlice';
+import { useAppDispatch, useAppSelector } from '../store/store';
+import { logout, selectUserUid } from '../slices/authSlice';
 import { SideMenuProps, ExerciseObject } from '../types/PropsType';
+import { useAddWorkout } from '../api/wokrouts';
 
 
 const formControlLabelStyle = {
@@ -30,6 +31,8 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const signOutMutation = useSignOut();
+  const { mutate } = useAddWorkout();
+  const userUid = useAppSelector(selectUserUid);
 
   const [open, setOpen] = useState(false);
   const [exerciseName, setExerciseName] = useState("");
@@ -57,7 +60,7 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
   const handleOpen = (exerciseNameToAdd: string) => {
     setOpen(true);
     setExerciseName(exerciseNameToAdd);
-  }
+  };
 
   const handleSignOut = () => {
     signOutMutation.mutate(undefined, {
@@ -69,6 +72,22 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
       },
     });
   };
+
+  const sendWorkout = () => {
+    mutate({ owner: userUid, 
+             date: new Date(), 
+             exercises: exerciseObject },
+      {
+        onSuccess: () => {
+          setExerciseObject({});
+          navigate('/');
+        },
+        onError: (error) => {
+          console.log(error);
+        },
+      }
+    );
+  }
 
   return (
     <div className="flex flex-col flex-1 gap-2">
@@ -83,7 +102,7 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
       <List className="bg-slate-300 rounded-lg flex-1">
         <IconButton onClick={() => setCollapseOpen(!collapseOpen)}>
           <ListItemText primary="Category filters" />
-          <TuneIcon className="w-24 h-24 ml-2" />
+          <TuneIcon className="w-24 h-24 ml-20" />
           {collapseOpen ? <ExpandLess /> : <ExpandMore />}
         </IconButton>
         <Divider />
@@ -124,7 +143,14 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
               </ListItem>
           ))}
         </List>
-        {Object.keys(exerciseObject).length > 0 ? <Divider /> : null}
+        {Object.keys(exerciseObject).length > 0 ? (
+        <>
+          <Divider />
+          <Button onClick={sendWorkout}>
+            Add workout plan!
+          </Button> 
+        </>
+        ) : null}
       </List>
       <Modal open={open} onClose={() => setOpen(false)}>
         <ExerciseParams exerciseName={exerciseName} 

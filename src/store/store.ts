@@ -11,6 +11,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import { authSlice } from "../slices/authSlice";
+import { workoutSlice } from "../slices/workoutSlice";
 
 
 const persistConfig = {
@@ -21,6 +22,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   auth: authSlice.reducer,
+  workout: workoutSlice.reducer,
 });
 const persistedReducer = persistReducer(persistConfig, reducers);
 

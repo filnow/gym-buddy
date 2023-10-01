@@ -3,8 +3,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 import { useSignOut } from '../api/auth';
-import { useAppDispatch } from '../store/store';
-import { logout } from '../slices/authSlice';
+import { useAppDispatch, useAppSelector } from '../store/store';
+import { logout, selectUserUid } from '../slices/authSlice';
+import Animation from "../components/Animation.tsx";
+import WorkoutsMenu from "../components/WorkoutsMenu.tsx";
+import { useState } from "react";
+import { fetchWorkouts } from "../api/wokrouts.ts";
 
 
 export default function Home() {
@@ -12,29 +16,55 @@ export default function Home() {
     const dispatch = useAppDispatch();
     const signOutMutation = useSignOut();
     const navigate = useNavigate();
+    const userUid = useAppSelector(selectUserUid);
+    const { data } = fetchWorkouts(userUid);
+
+
+    if (data) {
+        console.log(data[1].exercises);
+    }
+    
+
+    const [workouts, setWorkouts] = useState({});
+
+    const handleSearch = () => navigate("/search");
 
     const handleSignOut = () => {
         signOutMutation.mutate(undefined, {
             onSuccess: () => {
-            dispatch(logout());
+                dispatch(logout());
             },
             onError: (error) => {
-            console.log(error);
+                console.log(error);
             },
         });
     };
 
-    const handleSearch = () => navigate("/search");
+    
 
     return (
-        <div className="flex flex-col flex-1 gap-2">
-            <div className="bg-slate-300 rounded-lg">
-                <IconButton onClick={handleSearch}>
-                    <SearchIcon className="w-24 h-24 ml-2" />
-                </IconButton>
-                <IconButton onClick={handleSignOut}>
-                    <LogoutIcon className="w-24 h-24 ml-2" />
-                </IconButton>
+        <div className="relative h-screen p-2 gap-3 flex items-stretch">
+            <div className="w-[350px] flex-col hidden lg:flex overflow-y-auto">
+                <div className="flex flex-col flex-1 gap-2">
+                    <div className="bg-slate-300 rounded-lg">
+                        <IconButton onClick={handleSearch}>
+                            <SearchIcon className="w-24 h-24 ml-2" />
+                        </IconButton>
+                        <IconButton onClick={handleSignOut}>
+                            <LogoutIcon className="w-24 h-24 ml-2" />
+                        </IconButton>
+                    </div>
+                </div>
+            </div> 
+            <div className="rounded-lg bg-slate-300 flex-1 mx-auto overflow-y-auto scrollbar-hide">
+                <div className="flex flex-col items-center justify-center">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-7 ml-5 mt-10 mb-10">
+                        <WorkoutsMenu/>
+                    </div>
+                </div>
+            </div>
+            <div className="w-[350px] flex-col hidden lg:flex overflow-y-auto">
+                <Animation/>
             </div>
         </div>
     );
