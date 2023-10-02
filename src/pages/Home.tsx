@@ -7,26 +7,17 @@ import { useAppDispatch, useAppSelector } from '../store/store';
 import { logout, selectUserUid } from '../slices/authSlice';
 import Animation from "../components/Animation.tsx";
 import WorkoutsMenu from "../components/WorkoutsMenu.tsx";
-import { useState } from "react";
 import { fetchWorkouts } from "../api/wokrouts.ts";
 
 
 export default function Home() {
 
-    const dispatch = useAppDispatch();
-    const signOutMutation = useSignOut();
-    const navigate = useNavigate();
     const userUid = useAppSelector(selectUserUid);
+    const signOutMutation = useSignOut();
     const { data } = fetchWorkouts(userUid);
 
-
-    if (data) {
-        console.log(data[1].exercises);
-    }
-    
-
-    const [workouts, setWorkouts] = useState({});
-
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const handleSearch = () => navigate("/search");
 
     const handleSignOut = () => {
@@ -39,8 +30,6 @@ export default function Home() {
             },
         });
     };
-
-    
 
     return (
         <div className="relative h-screen p-2 gap-3 flex items-stretch">
@@ -59,7 +48,7 @@ export default function Home() {
             <div className="rounded-lg bg-slate-300 flex-1 mx-auto overflow-y-auto scrollbar-hide">
                 <div className="flex flex-col items-center justify-center">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-7 ml-5 mt-10 mb-10">
-                        <WorkoutsMenu/>
+                        <WorkoutsMenu data={data}/>
                     </div>
                 </div>
             </div>

@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from '../store/store';
 import { logout, selectUserUid } from '../slices/authSlice';
 import { SideMenuProps, ExerciseObject } from '../types/PropsType';
 import { useAddWorkout } from '../api/wokrouts';
+import { Timestamp } from 'firebase/firestore';
 
 
 const formControlLabelStyle = {
@@ -75,7 +76,7 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
 
   const sendWorkout = () => {
     mutate({ owner: userUid, 
-             date: new Date(), 
+             date: Timestamp.fromDate(new Date()),
              exercises: exerciseObject },
       {
         onSuccess: () => {
@@ -154,7 +155,6 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
       </List>
       <Modal open={open} onClose={() => setOpen(false)}>
         <ExerciseParams exerciseName={exerciseName} 
-                        exerciseObject={exerciseObject} 
                         setModalState={() => setOpen(false)} 
                         setExerciseObject={setExerciseObject}/>
       </Modal>

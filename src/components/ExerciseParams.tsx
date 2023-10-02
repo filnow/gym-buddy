@@ -9,7 +9,7 @@ import { defaultExerciseData } from '../constants/DeafaultParams';
 import { ExerciseInputProps, ExerciseObject } from '../types/PropsType';
 
 
-const ExerciseInput = ({exerciseName, exerciseObject, setModalState, setExerciseObject} : ExerciseInputProps) => {
+const ExerciseInput = ({exerciseName, setModalState, setExerciseObject} : ExerciseInputProps) => {
 
     const [exerciseData, setExerciseData] = useState<ExerciseDataState>(defaultExerciseData);
     

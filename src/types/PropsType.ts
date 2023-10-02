@@ -14,7 +14,6 @@ export interface SearchBarProps {
 
 export interface ExerciseInputProps {
     exerciseName: string;
-    exerciseObject: {};
     setModalState: () => void;
     setExerciseObject: (data: {}) => void;
 }

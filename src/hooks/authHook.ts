@@ -13,7 +13,7 @@ export const useAuthGuard = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (!user) {
-        dispatch(logout)
+        dispatch(logout())
         navigate(ROUTES.LOGIN);
       }
     });

@@ -1,19 +1,12 @@
-
 import {
-    DocumentData,
-    Timestamp,
-    addDoc,
-    deleteDoc,
-    doc,
+    addDoc,    
     getDocs,
     orderBy,
     query,
-    updateDoc,
     where,
   } from "firebase/firestore";
 import { workoutCollection } from "../firebase.ts";
 import { useAuthGuard } from "../hooks/authHook.ts";
-import { ExerciseObject } from "../types/PropsType.ts";
 import { FirebaseError } from "firebase/app";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Workout } from "../types/WorkoutType.ts";
