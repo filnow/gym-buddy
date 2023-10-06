@@ -1,4 +1,4 @@
-import './GifsAnimation.css';
+import '../utils/GifsAnimation.css'
 import { gifsList } from '../constants/GifsList'; 
 
 

@@ -4,6 +4,7 @@ import { ExerciseField } from "../enum/ExerciseField";
 
 
 export interface Workout {
+    id: string;
     owner: string;
     date: Timestamp;
     exercises: ExerciseObject;

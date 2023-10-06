@@ -49,7 +49,6 @@ export default function Home() {
                 <div className="flex flex-col items-center justify-center">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-7 ml-5 mt-10 mb-10">
                         <WorkoutsMenu data={data}/>
-
                     </div>
                 </div>
             </div>
