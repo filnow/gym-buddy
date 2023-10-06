@@ -1,32 +1,17 @@
 import { Card, CardContent, Typography } from "@mui/material";
-import { Workout } from "../types/WorkoutType";
+import { WorkoutsMenuProps } from "../types/PropsType";
+import { WorkoutExercisesObject } from "../types/WorkoutType";
 
-
-interface WorkoutsMenuProps {
-    data?: Workout[];
-}
 
 export default function WorkoutsMenu({ data }: WorkoutsMenuProps) {
 
-    const exercisesKeys = data?.flatMap(workout => workout.exercises).map(exercise => Object.keys(exercise));
-    const exercisesValues = data?.flatMap(workout => workout.exercises).map(exercise => Object.values(exercise));
-
-    const combinedExercises = data
-        ?.flatMap(workout => workout.exercises)
-        .map(exercise => ({
-            keys: Object.keys(exercise),
-            values: Object.values(exercise),
-        }));
-
-    const combinedKeys = combinedExercises?.map(exercise => exercise.keys);
-
+    const exercises: Array<WorkoutExercisesObject> = data ? data.flatMap(workout => workout.exercises) : [];
+    
     return (    
         <>
-            {exercisesKeys?.map((exercise, index) => {
-
-                const workoutDateObject = data?.[index].date.seconds; 
-                const formattedDate = workoutDateObject ? new Date(workoutDateObject * 1000).toLocaleDateString() : '';
-                const params = exercisesValues?.[index]
+            {exercises.map((exercise, index) => {
+                const workoutDateObject: number = data ? data[index].date.seconds : 0; 
+                const formattedDate: string = new Date(workoutDateObject * 1000).toLocaleDateString();
                 
                 return (
                     <Card sx={{width: '20vw', height: '45vh'}}>
@@ -34,17 +19,13 @@ export default function WorkoutsMenu({ data }: WorkoutsMenuProps) {
                             <Typography sx= {{marginBottom: '5%'}}>
                                 Date: {formattedDate}
                             </Typography>
-                            {exercise.map((item, index) => {
-                                const paramsIndex = params?.[index];
-                                const formattedParams = paramsIndex ? Object.values(paramsIndex) : '';
-
+                            {Object.values(exercise).map((item, index) => {
                                 return (
                                     <Typography sx={{ marginBottom: '5%' }}>
-                                        {index}: {item} - {formattedParams[1]} kg / {formattedParams[0]} / {formattedParams[3]}
+                                        {index}: {Object.keys(exercise)[index]} - {item.weight} kg / {item.numSeries} / {item.numReps} 
                                     </Typography>
                                 );
                             })}
-
                         </CardContent>
                     </Card>
                 );

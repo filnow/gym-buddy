@@ -17,23 +17,29 @@ export function fetchWorkouts(userId: string) {
     return useQuery<Workout[], FirebaseError>({
         queryKey: ['workoutsData', userId],
         queryFn: async () => {
-            const response = await getDocs(
-                query(
-                    workoutCollection,
-                    where("owner", "==", userId),
-                    orderBy("date", "desc")
-                )
-            );
-            const workouts: Workout[] = response.docs.map((doc) => {
-                const data = doc.data();
-                return {
-                    owner: userId,
-                    date: data.date,
-                    exercises: data.exercises,
-                };
-            });
-            return workouts;
-        },
+            try {
+                const response = await getDocs(
+                    query(
+                        workoutCollection,
+                        where("owner", "==", userId),
+                        orderBy("date", "desc")
+                    )
+                );
+                const workouts: Workout[] = response.docs.map((doc) => {
+                    const data = doc.data();
+                    return {
+                        owner: userId,
+                        date: data.date,
+                        exercises: data.exercises,
+                    };
+                });
+                return workouts;
+            } catch (error) {
+                console.log(error); //NOTE: maybe add some error handling here
+                const workouts: Workout[] = [];
+                return workouts;
+            }
+        }
     });
 }
 

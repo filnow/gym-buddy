@@ -1,3 +1,5 @@
+import { Workout } from "./WorkoutType";
+
 export interface SideMenuProps {
     exerciseObject: {};
     setExerciseObject: (data: {}) => void;
@@ -23,4 +25,8 @@ export interface ExerciseCardProps {
   searchData: string;
   exerciseObject: {};
   sendExerciseObject: (data: {}) => void; 
+}
+
+export interface WorkoutsMenuProps {
+  data?: Workout[];
 }
