@@ -7,5 +7,7 @@ export const gifsList: GifsList = {
     liftingMan : '../src/assets/gifs/LiftingMan.gif',
     runningGirl : '../src/assets/gifs/RunningGirl.gif',
     runningMan : '../src/assets/gifs/RunningMan.gif',
-    strechingGirl : '../src/assets/gifs/StrechingGirl.gif'
+    strechingGirl : '../src/assets/gifs/StrechingGirl.gif',
 }
+
+export const splashGif = '../src/assets/gifs/SpinningMan.gif';

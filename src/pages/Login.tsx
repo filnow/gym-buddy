@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ROUTES } from '../constants/Routes';
 import { styled } from '@mui/material'
 import { useSignIn } from "../api/auth";
@@ -11,6 +11,8 @@ import { useAppDispatch } from '../store/store';
 import { login } from "../slices/authSlice";
 import { useForm } from 'react-hook-form';
 import { LoginFormProps } from '../types/FormType';
+import { useState } from 'react';
+import SplashScreen from '../components/SplashScreen';
 
 
 const StyledLink = styled(Link)(({ theme }) => ({
@@ -24,14 +26,13 @@ const StyledLink = styled(Link)(({ theme }) => ({
 
 export default function Login() {
   
-  const signInMutation = useSignIn();
+  const [splash, setSplash] = useState(false)
+  const {mutate, isLoading} = useSignIn();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
   const { register, handleSubmit} = useForm<LoginFormProps>();
 
   const onSubmit = (data: LoginFormProps) => {
-    signInMutation.mutate(
+    mutate(
       { email: data.email, password: data.password },
       {
         onSuccess: (response) => {
@@ -40,7 +41,7 @@ export default function Login() {
               uid: response.uid,
             })
           );
-          navigate(ROUTES.HOME);
+          setSplash(true);
         },
         onError: (error) => {
           console.log(error);
@@ -49,7 +50,11 @@ export default function Login() {
     );
   };
 
+
   return (
+      splash ? 
+      <SplashScreen setSplash={setSplash}/>
+      :
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
@@ -84,6 +89,7 @@ export default function Login() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={isLoading}
             >
               Login
             </Button>
@@ -93,5 +99,6 @@ export default function Login() {
           </Box>
         </Box>
       </Container>
+    
   );
 }

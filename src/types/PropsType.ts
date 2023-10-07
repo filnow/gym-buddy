@@ -30,3 +30,7 @@ export interface ExerciseCardProps {
 export interface WorkoutsMenuProps {
   data?: Workout[];
 }
+
+export interface SplashScreenProps {
+  setSplash: (value: boolean) => void;
+}

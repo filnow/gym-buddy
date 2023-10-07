@@ -31,14 +31,14 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const signOutMutation = useSignOut();
   const { mutate } = useAddWorkout();
+
+  const signOutMutation = useSignOut();
   const userUid = useAppSelector(selectUserUid);
 
   const [open, setOpen] = useState(false);
   const [exerciseName, setExerciseName] = useState("");
   const [collapseOpen, setCollapseOpen] = useState(false);
-
   const [checkedState, setCheckedState] = useState(
     new Array(Object.keys(Categories).length).fill(false)
   );

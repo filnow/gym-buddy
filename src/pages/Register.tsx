@@ -11,6 +11,8 @@ import { login } from "../slices/authSlice";
 import { useAppDispatch } from "../store/store";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { SignUpFormProps } from '../types/FormType';
+import { useState } from 'react';
+import SplashScreen from '../components/SplashScreen';
 
 
 export default function Register() {
@@ -18,6 +20,7 @@ export default function Register() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { mutate, isLoading } = useSignUp();
+  const [splash, setSplash] = useState(false)
   const { register, handleSubmit, watch} = useForm<SignUpFormProps>();
 
   const onSubmit = (data: SignUpFormProps) => {
@@ -30,7 +33,7 @@ export default function Register() {
               uid: response.uid,
             })
           );
-          navigate(ROUTES.HOME);
+          setSplash(true);
         },
         onError: (error) => {
           console.log(error);
@@ -40,6 +43,9 @@ export default function Register() {
   };
 
   return (
+    splash ? 
+      <SplashScreen setSplash={setSplash}/>
+    :
     <Container component="main" maxWidth="xs">
       <Box
         sx={{

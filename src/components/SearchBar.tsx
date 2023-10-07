@@ -5,13 +5,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { SearchBarProps } from '../types/PropsType';
 
 
-export default function SearchBar(props : SearchBarProps){
+export default function SearchBar({ sendData } : SearchBarProps){
 
   const [inputText, setInputText] = useState("");
 
   const handleInput = (input: string) => {
     setInputText(input);
-    props.sendData(input);
+    sendData(input);
   };
 
   return (

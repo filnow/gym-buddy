@@ -4,6 +4,7 @@ import { WorkoutExercisesObject } from "../types/WorkoutType";
 import CloseSharpIcon from '@mui/icons-material/CloseSharp';
 import { useRemoveWorkout } from "../api/wokrouts";
 
+
 export default function WorkoutsMenu({ data }: WorkoutsMenuProps) {
 
     const exercises: Array<WorkoutExercisesObject> = data ? data.flatMap(workout => workout.exercises) : [];
