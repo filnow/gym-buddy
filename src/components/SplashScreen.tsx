@@ -8,8 +8,7 @@ export default function SplashScreen({setSplash}: SplashScreenProps) {
     
     const navigate = useNavigate();
 
-    let timerId: NodeJS.Timeout;
-    timerId = setTimeout(() => {
+    setTimeout(() => {
         navigate(ROUTES.HOME);
         setSplash(false);
     }
