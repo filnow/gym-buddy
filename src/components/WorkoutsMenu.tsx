@@ -34,7 +34,7 @@ export default function WorkoutsMenu({ data }: WorkoutsMenuProps) {
                                 <CloseSharpIcon/>
                             </IconButton>
                             <Typography sx= {{marginBottom: '5%', marginTop: '3%'}}>
-                                Date: {formattedDate}
+                                Date: {formattedDate} 
                             </Typography>
                             {Object.values(exercise).map((item, index) => {
                                 return (

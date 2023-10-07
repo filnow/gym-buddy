@@ -2,8 +2,8 @@ import { ExerciseDataState } from '../types/ExerciseDataType';
 import { ExerciseField } from '../enum/ExerciseField';
 
 export const defaultExerciseData: ExerciseDataState = {
-    [ExerciseField.NumSeries]: '',
-    [ExerciseField.NumReps]: '',
-    [ExerciseField.Weight]: '',
-    [ExerciseField.Comments]: '',
+    [ExerciseField.NumSeries]: '0',
+    [ExerciseField.NumReps]: '0',
+    [ExerciseField.Weight]: '0',
+    [ExerciseField.Comments]: 'No comments',
   };
