@@ -22,7 +22,7 @@ export default function WorkoutsMenu({ data }: WorkoutsMenuProps) {
     }
     
     return (    
-        <>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-7 ml-5 mt-10 mb-10">
             {exercises.map((exercise, index) => {
                 const formattedDate: string = data ? new Date(data[index].date.seconds * 1000).toLocaleDateString() : '';
                 const id: string = data ? data[index].id : '';
@@ -47,7 +47,6 @@ export default function WorkoutsMenu({ data }: WorkoutsMenuProps) {
                     </Card>
                 );
             })}
-        </>
-        
+        </div>
     );
 }

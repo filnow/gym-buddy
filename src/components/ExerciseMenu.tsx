@@ -1,4 +1,3 @@
-import HomeIcon from '@mui/icons-material/Home';
 import ClearIcon from '@mui/icons-material/Clear';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import { List, ListItemButton, ListItemText, IconButton, ListItem, Modal, Collapse, Divider, Button } from "@mui/material";
@@ -10,11 +9,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { Categories } from '../enum/Category';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import TuneIcon from '@mui/icons-material/Tune';
-import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
-import { useSignOut } from '../api/auth';
-import { useAppDispatch, useAppSelector } from '../store/store';
-import { logout, selectUserUid } from '../slices/authSlice';
+import { useAppSelector } from '../store/store';
+import { selectUserUid } from '../slices/authSlice';
 import { SideMenuProps, ExerciseObject } from '../types/PropsType';
 import { useAddWorkout } from '../api/wokrouts';
 import { Timestamp } from 'firebase/firestore';
@@ -27,13 +24,11 @@ const formControlLabelStyle = {
   }
 }
 
-const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenuProps) => {
+export default function ExerciseMenu({ exerciseObject, setExerciseObject, setFilterData }: SideMenuProps) {
 
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const { mutate } = useAddWorkout();
 
-  const signOutMutation = useSignOut();
   const userUid = useAppSelector(selectUserUid);
 
   const [open, setOpen] = useState(false);
@@ -63,16 +58,7 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
     setExerciseName(exerciseNameToAdd);
   };
 
-  const handleSignOut = () => {
-    signOutMutation.mutate(undefined, {
-      onSuccess: () => {
-        dispatch(logout());
-      },
-      onError: (error) => {
-        console.log(error);
-      },
-    });
-  };
+
 
   const sendWorkout = () => {
     mutate({ owner: userUid, 
@@ -91,15 +77,7 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
   }
 
   return (
-    <div className="flex flex-col flex-1 gap-2">
-      <div className="bg-slate-300 rounded-lg">
-        <IconButton onClick={() => navigate('/')}>
-          <HomeIcon className="w-24 h-24 ml-2" />
-        </IconButton>
-        <IconButton onClick={handleSignOut}>
-          <LogoutIcon className="w-24 h-24 ml-2" />
-        </IconButton>
-      </div>
+    <>
       <List className="bg-slate-300 rounded-lg flex-1">
         <IconButton onClick={() => setCollapseOpen(!collapseOpen)}>
           <ListItemText primary="Category filters" />
@@ -158,8 +136,8 @@ const SideMenu = ({ exerciseObject, setExerciseObject, setFilterData }: SideMenu
                         setModalState={() => setOpen(false)} 
                         setExerciseObject={setExerciseObject}/>
       </Modal>
-    </div>
+    </>
   );
 };
 
-export default SideMenu;
+

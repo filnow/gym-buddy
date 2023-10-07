@@ -3,17 +3,17 @@ import { ExerciseField } from '../enum/ExerciseField';
 export const inputFields = [
     {
         label: 'Number of Series',
-        type: 'number',
+        type: 'string',
         field: ExerciseField.NumSeries,
     },
     {
         label: 'Number of Reps',
-        type: 'number',
+        type: 'string',
         field: ExerciseField.NumReps,
     },
     {
         label: 'Weight',
-        type: 'number',
+        type: 'string',
         field: ExerciseField.Weight,
     },
     {

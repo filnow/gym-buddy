@@ -71,28 +71,28 @@ export default function ExerciseCard(
   }
 
   return (
-    <>
-    {exerciseData.map((exercise) => {
-      return (
-      <div className="link-card">
-        <div className={`w-full flex items-center justify-between p-7 rounded-lg shadow-md border-4 ${exercise.colorLight} bg-white transition-border duration-300 ${exercise.colorDark}`}>
-            <div className="text-xl font-semibold text-black">
-              {exercise.name}
-            </div>
-            <div className="flex items-center"> 
-              <img src={exercise.icon} className="w-6 h-6 ml-5" />
-              <div className="ml-16 flex flex-col items-center">
-                <IconButton aria-label="Example" onClick={() => buttonClick(exercise.id)}>
-                    <PlusIcon className="w-6 h-6" />
-                </IconButton>
-                <IconButton aria-label="Example">
-                    <EllipsisHorizontalIcon className="w-6 h-6" />
-                </IconButton>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-7 ml-5 mt-10 mb-10">
+      {exerciseData.map((exercise) => {
+        return (
+        <div className="link-card">
+          <div className={`w-full flex items-center justify-between p-7 rounded-lg shadow-md border-4 ${exercise.colorLight} bg-white transition-border duration-300 ${exercise.colorDark}`}>
+              <div className="text-xl font-semibold text-black">
+                {exercise.name}
               </div>
-            </div>
+              <div className="flex items-center"> 
+                <img src={exercise.icon} className="w-6 h-6 ml-5" />
+                <div className="ml-16 flex flex-col items-center">
+                  <IconButton aria-label="Example" onClick={() => buttonClick(exercise.id)}>
+                      <PlusIcon className="w-6 h-6" />
+                  </IconButton>
+                  <IconButton aria-label="Example">
+                      <EllipsisHorizontalIcon className="w-6 h-6" />
+                  </IconButton>
+                </div>
+              </div>
+          </div>
         </div>
-      </div>
       );})} 
-    </>
+    </div>
   );
 }

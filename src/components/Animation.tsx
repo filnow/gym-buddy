@@ -5,7 +5,7 @@ import { gifsList } from '../constants/GifsList';
 export default function Animation() {
  
   return (
-    <div className="App">
+    <div className="w-[350px] flex-col hidden lg:flex overflow-y-auto">
       <div className="image-container scrollbar">
         {Object.keys(gifsList).map((gifKey, index) => (
           <img

@@ -1,9 +1,11 @@
-import SideMenu from "../components/SideMenu.tsx";
+import ExerciseMenu from "../components/ExerciseMenu.tsx";
 import ExerciseCard from '../components/ExerciseCard.tsx';
 import SearchBar from '../components/SearchBar.tsx';
 import { useState } from "react";
-import Animation from "../components/Animation.tsx";
-
+import NavbarLayout from "../components/templates/NavbarLayout.tsx";
+import Navbar from "../components/Navbar.tsx";
+import MainLayout from "../components/templates/MainLayout.tsx";
+import MenuLayout from "../components/templates/MenuLayout.tsx";
 
 const CardsMenu = () => {
 
@@ -24,29 +26,21 @@ const CardsMenu = () => {
     }
 
     return (
-        <div className="relative h-screen p-2 gap-3 flex items-stretch">
-            <div className="w-[350px] flex-col hidden lg:flex overflow-y-auto">
-                <SideMenu exerciseObject={exerciseObject} 
-                          setExerciseObject={sendExerciseObject} 
-                          setFilterData={sentFilterData}/>  
-            </div> 
-            <div className="rounded-lg bg-slate-300 flex-1 mx-auto overflow-y-auto scrollbar-hide">
-                <div className="flex flex-col items-center justify-center">
-                    <div className="w-full sm:w-1/2 lg:w-1/2 mt-10 ml-4 justify-center">
-                        <SearchBar sendData={sentSearchData}/>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-7 ml-5 mt-10 mb-10">
-                        <ExerciseCard updateData={filterData} 
-                                      searchData={searchData} 
-                                      exerciseObject={exerciseObject} 
-                                      sendExerciseObject={sendExerciseObject}/>
-                    </div>
-                </div>
-            </div>
-            <div className="w-[350px] flex-col hidden lg:flex overflow-y-auto">
-                <Animation/>
-            </div>
-        </div>
+        <MainLayout>
+            <NavbarLayout>
+                <Navbar homeNav={true}/>
+                <ExerciseMenu exerciseObject={exerciseObject} 
+                        setExerciseObject={sendExerciseObject} 
+                        setFilterData={sentFilterData}/>
+            </NavbarLayout>
+            <MenuLayout>
+                <SearchBar sendData={sentSearchData}/>
+                <ExerciseCard updateData={filterData} 
+                                searchData={searchData} 
+                                exerciseObject={exerciseObject} 
+                                sendExerciseObject={sendExerciseObject}/>
+            </MenuLayout>
+        </MainLayout>
     );
 }
 
