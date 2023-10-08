@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../constants/Routes';
 import { SplashScreenProps } from '../types/PropsType';
-import gifURL from '../assets/splash.gif';
+import gifURL from '../assets/gifs/SpinningMan.gif';
 
 
 export default function SplashScreen({setSplash}: SplashScreenProps) {
