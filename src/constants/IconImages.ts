@@ -1,10 +1,10 @@
 export const iconImages = {
-    iconLegs : '../src/assets/images/iconLegs.png',
-    iconArms : '../src/assets/images/iconArms.png',
-    iconAbs : '../src/assets/images/iconAbs.png',
-    iconChest : '../src/assets/images/iconChest.png',
-    iconBack : '../src/assets/images/iconBack.png',
-    iconShoulders : '../src/assets/images/iconShoulders.png',
-    iconCardio : '../src/assets/images/iconCardio.png',
-    iconStreching : '../src/assets/images/iconStreching.png',
+    iconLegs : '../src/assets/images/iconLegs.PNG',
+    iconArms : '../src/assets/images/iconArms.PNG',
+    iconAbs : '../src/assets/images/iconAbs.PNG',
+    iconChest : '../src/assets/images/iconChest.PNG',
+    iconBack : '../src/assets/images/iconBack.PNG',
+    iconShoulders : '../src/assets/images/iconShoulders.PNG',
+    iconCardio : '../src/assets/images/iconCardio.PNG',
+    iconStreching : '../src/assets/images/iconStreching.PNG',
 }
