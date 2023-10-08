@@ -1,13 +1,19 @@
+import LiftingGirlGif from '../assets/gifs/LiftingGirl.gif';
+import LiftingManGif from '../assets/gifs/LiftingMan.gif';
+import RunningGirlGif from '../assets/gifs/RunningGirl.gif';
+import RunningManGif from '../assets/gifs/RunningMan.gif';
+import StrechingGirlGif from '../assets/gifs/StrechingGirl.gif';
+
 type GifsList = {
     [key: string]: string;
   };
 
-export const gifsList: GifsList = {
-    liftingGirl : '../src/assets/gifs/LiftingGirl.gif',
-    liftingMan : '../src/assets/gifs/LiftingMan.gif',
-    runningGirl : '../src/assets/gifs/RunningGirl.gif',
-    runningMan : '../src/assets/gifs/RunningMan.gif',
-    strechingGirl : '../src/assets/gifs/StrechingGirl.gif',
-}
 
-export const splashGif = '../src/assets/gifs/SpinningMan.gif';
+
+export const gifsList: GifsList = {
+    liftingGirl : LiftingGirlGif,
+    liftingMan : LiftingManGif,
+    runningGirl : RunningGirlGif,
+    runningMan : RunningManGif,
+    strechingGirl : StrechingGirlGif,
+}
