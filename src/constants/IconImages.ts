@@ -1,3 +1,5 @@
+
+
 export const iconImages = {
     iconLegs : '../src/assets/images/iconLegs.PNG',
     iconArms : '../src/assets/images/iconArms.PNG',
@@ -7,4 +9,5 @@ export const iconImages = {
     iconShoulders : '../src/assets/images/iconShoulders.PNG',
     iconCardio : '../src/assets/images/iconCardio.PNG',
     iconStreching : '../src/assets/images/iconStreching.PNG',
+    
 }
